@@ -1,0 +1,16 @@
+PODS:
+  - QUGenderView (0.1.0)
+
+DEPENDENCIES:
+  - QUGenderView (from `../`)
+
+EXTERNAL SOURCES:
+  QUGenderView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  QUGenderView: 7030c6e6ae3323ea0edacffd805b1476f6147617
+
+PODFILE CHECKSUM: e68fb2e7c547ff19568d9c361bc805d9eff93911
+
+COCOAPODS: 1.3.1

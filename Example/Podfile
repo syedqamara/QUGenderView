@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'QUGenderView_Example' do
+  pod 'QUGenderView', :path => '../'
+
+  target 'QUGenderView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
