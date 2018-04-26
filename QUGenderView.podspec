@@ -31,7 +31,7 @@ you can user this class in few steps. Initializer method of GenderView takes a c
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-  s.swift_version = "4.1"
+#s.swiftversion = "4.1"
   s.source_files = 'QUGenderView/Classes/**/*'
   
   # s.resource_bundles = {
