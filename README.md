@@ -21,7 +21,7 @@ pod 'QUGenderView'
 ```
 
 ## Overview
-![demo](.gender_selection_demo.gif)
+![demo](./gender_selection_demo.gif)
 
 This view and its layer create a 2D animation upon gender selection.
 It gives a call back completion handler which inform whether user select `male` or `female`
