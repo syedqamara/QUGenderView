@@ -31,24 +31,24 @@ It gives a call back completion handler which inform whether user select `male` 
 you can user this class in few steps. Initializer method of `GenderView` takes a color as parameter which is the clothing color of `male` and `female`.
 
 
-let genderView = GenderView(frame: self.view.frame, andColor: UIColor.darkGray)
-self.view.addSubview(genderView)
+    let genderView = GenderView(frame: self.view.frame, andColor: UIColor.darkGray)
+    self.view.addSubview(genderView)
 
 You can customise this view with your custom `UI-Design` techniques. There are few attributes that you need to set.
 
 To set the `Boy` and `Girl` button's background color you should assign your color to the property of `GenderView` object of name `genderButtonColor`.
 
-genderView.genderButtonColor = .white
+    genderView.genderButtonColor = .white
 
 To set the selection `textColor` of both buttons you need to assign a `selectedButtonColor` of `GenderView`
 
-genderView.selectedButtonColor = .lightGray
+    genderView.selectedButtonColor = .lightGray
 
 To register a callback method so you may know which gender is selected you should call below method with completion handler. This completion handler brings the selected gender type as enumeration of type `GenderType`. You can use it like this.
 
-genderView?.genderIsSelected(completion: { (selectedGenderType: GenderType) in
-//This completionHandler will call whenever user tap on Boy/Girl button.
-}) 
+    genderView?.genderIsSelected(completion: { (selectedGenderType: GenderType) in
+        //This completionHandler will call whenever user tap on Boy/Girl button.
+    }) 
 
 
 ## Additional Control.
@@ -59,8 +59,8 @@ You can additionally control the `topLabel`, and both `Boy` and `Girl` buttons a
 
 ```
 public enum GenderType: String {
-case male = "male"
-case female = "female"
+    case male = "male"
+    case female = "female"
 }
 ```
 
