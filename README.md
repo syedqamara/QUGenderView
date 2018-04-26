@@ -68,6 +68,8 @@ public enum GenderType: String {
 ### Syed Qamar Abbas `Author`
 * [Syed Qamar Abbas - Facebook](https://www.facebook.com/syedqamar.a)
 * [Muhammad Umair - Facebook](https://www.facebook.com/umair.sharif99)
+* [Adnan Ahmed Janjua - Facebook](https://www.facebook.com/adnanahmadjanjua)
+
 
 ## License
 
