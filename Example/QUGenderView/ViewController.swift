@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         self.gender?.topLabel?.text = "I'm a male"
         gender?.genderButtonColor = UIColor.white
         gender?.selectedButtonColor = UIColor.lightGray
-        gender?.clotheColor = UIColor.darkGray
+        gender?.clotheColor = UIColor.orange
         gender?.genderIsSelected(completion: { (genderType) in
             
         })

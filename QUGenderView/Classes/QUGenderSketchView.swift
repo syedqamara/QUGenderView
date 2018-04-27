@@ -15,6 +15,7 @@ struct AnimationKeys {
 }
 
 public class QUGenderSketchView: UIView {
+    var bodyHeight: CGFloat = 0.0
     fileprivate var bodyEndYAxis: CGFloat = 0.0
     fileprivate var bodyEndXAxis: CGFloat = 0.0
     fileprivate var bodyStartXAxis: CGFloat = 0.0
@@ -63,9 +64,9 @@ public class QUGenderSketchView: UIView {
         return path
     }
     fileprivate func bodyPath(type: GenderType) -> UIBezierPath {
-        let armBodyMargin: CGFloat = 10
+        let armBodyMargin: CGFloat = (bounds.width/37.5)
         let headHeight = bounds.height/6
-        let topY = 30 + headHeight
+        let topY = (bounds.width/12.5) + headHeight
         let startX = (bounds.width/2) - (headHeight/1.2)
         let EndX = (bounds.width/2) + (headHeight/1.2)
         
@@ -76,27 +77,29 @@ public class QUGenderSketchView: UIView {
         let rightArmRightSideX = EndX + armBodyMargin
         let rightArmLeftSideX = EndX - armBodyMargin
         
-        let rightUnderArmY = topY + 30
-        let rightUnderArmX = EndX - 30
+        let rightUnderArmY = topY + (bounds.width/12.5)
+        let rightUnderArmX = EndX - (bounds.width/12.5)
         
         let bodyEndY = rightArmRightSideY 
         
         let arcDifference = ((armBodyMargin * 2))
         
-        let leftUnderArmX = startX + 30
+        let leftUnderArmX = startX + (bounds.width/12.5)
         
         let leftArmRightSideX = startX + armBodyMargin
         let leftArmLeftSideX = startX - armBodyMargin
         
         
         let bodyCenterY = ((bodyEndY - rightUnderArmY)/2) + rightUnderArmY
-        let bodyRightControlX = rightUnderArmX - 25
-        let bodyLeftControlX = leftUnderArmX + 25
+        let bodyRightControlX = rightUnderArmX - (bounds.width/15)
+        let bodyLeftControlX = leftUnderArmX + (bounds.width/15)
         
         //Globally Store Body Parts Positions
         bodyEndYAxis = bodyEndY
         bodyEndXAxis = rightUnderArmX
         bodyStartXAxis = leftUnderArmX
+        
+        bodyHeight = bodyEndYAxis - topY
         
         //All Positions
         let startPosition = CGPoint(x: startX, y: topY)
@@ -104,7 +107,7 @@ public class QUGenderSketchView: UIView {
         let startPositionBelow = CGPoint(x: startX, y: topY + arcDifference)
         let neckInitialPosition = CGPoint(x: neckInit, y: topY)
         let neckFinalPosition = CGPoint(x: neckFinal, y: topY)
-        let neckControlPoint = CGPoint(x: bounds.width/2, y: topY-15)
+        let neckControlPoint = CGPoint(x: bounds.width/2, y: topY-(bounds.width/25))
         
         let endPosition = CGPoint(x: EndX, y: topY)
         let endPositionBefore = CGPoint(x: EndX - (arcDifference), y: topY)
@@ -158,7 +161,7 @@ public class QUGenderSketchView: UIView {
     }
     
     fileprivate func nickerPath(_ gender: GenderType) -> UIBezierPath {
-        let armBodyMargin: CGFloat = 20
+        let armBodyMargin: CGFloat = (bounds.width/18.75)
         let headHeight = bounds.height/5.5
         
         let leftX = bodyStartXAxis - (armBodyMargin/3)
@@ -190,7 +193,7 @@ public class QUGenderSketchView: UIView {
         return path
     }
     fileprivate var underGarmentsPath: UIBezierPath {
-        let armBodyMargin: CGFloat = 15
+        let armBodyMargin: CGFloat = (bounds.width/25)
         var headHeight = bounds.height/5.5
         headHeight = headHeight/4
         
@@ -214,13 +217,18 @@ public class QUGenderSketchView: UIView {
         return path
     }
     fileprivate var legsPath: UIBezierPath {
-        let armBodyMargin: CGFloat = 30
+        let armBodyMargin: CGFloat = bounds.width/12.5
         let headHeight = bounds.height/5.5
         
-        let leftLegLeftX = bodyStartXAxis + (armBodyMargin/4)
-        let leftLegRightX = leftLegLeftX + (armBodyMargin)
+        let leftLegLeftX = bodyStartXAxis + (armBodyMargin/7)
+        var leftLegRightX = leftLegLeftX + (headHeight/3)
         let rightLegRightX = bodyEndXAxis - (armBodyMargin/7)
-        let rightLegLeftX = rightLegRightX - (armBodyMargin)
+        var rightLegLeftX = rightLegRightX - (headHeight/3)
+        
+        if rightLegLeftX <= leftLegRightX {
+            leftLegRightX = ((rightLegLeftX + leftLegRightX)/2) - (armBodyMargin/10)
+            rightLegLeftX = ((rightLegLeftX + leftLegRightX)/2) +  (armBodyMargin/5)
+        }
         
         var yAxis = bodyEndYAxis + headHeight
         yAxis = yAxis - lineWidth
@@ -282,16 +290,17 @@ public class QUGenderSketchView: UIView {
         animation.damping = 300
         animation.mass = 0.02
         animation.initialVelocity = 200
-        
+        let newValue = (bodyHeight - (bodyHeight/3)) * -1
         if newGender == .male {
             let newPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: 0)
-            let oldPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: -90)
+            let oldPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: newValue)
             animation.fromValue = NSValue.init(cgPoint: oldPosition)
             animation.toValue = NSValue.init(cgPoint: newPosition)
             underGarmentsLayer.position = newPosition
         }else {
+            
             let oldPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: 0)
-            let newPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: -80)
+            let newPosition = CGPoint(x: underGarmentsLayer.frame.origin.x, y: newValue)
             animation.fromValue = NSValue.init(cgPoint: oldPosition)
             animation.toValue = NSValue.init(cgPoint: newPosition)
             underGarmentsLayer.position = newPosition
