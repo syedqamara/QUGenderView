@@ -1,6 +1,0 @@
-framework module QUGenderView {
-  umbrella header "QUGenderView-umbrella.h"
-
-  export *
-  module * { export * }
-}
