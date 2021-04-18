@@ -16,7 +16,8 @@ function export_ipa {
     PROJECTNAME=$1
     BUILD_FOLDER=$2
     printMessage "Exporting IPA"
-    xcodebuild -exportArchive -archivePath "$PROJECTNAME.xcarchive" -exportPath "$BUILD_FOLDER" -exportOptionsPlist  "$BUILD_FOLDER/ExportOptions.plist"
+    printMessage $BUILD_FOLDER
+    xcodebuild -exportArchive -archivePath "$PROJECTNAME.xcarchive" -exportPath "$BUILD_FOLDER/$PROJECTNAME" -exportOptionsPlist  "$BUILD_FOLDER/ExportOptions.plist"
 }
 function remove_archive {
     PROJECTNAME=$1
@@ -29,7 +30,7 @@ function generate_build {
     BUILD_FOLDER=$4
     
     clean $PROJECTNAME $SCHEMENAME
-    archive $PROJECTNAME $SCHEMENAME
+    archive $PROJECTNAME $SCHEMENAME $BUILD_FOLDER
     export_ipa $PROJECTNAME $BUILD_FOLDER
     remove_archive $PROJECTNAME
 }
@@ -59,16 +60,18 @@ function build {
      if [[ -z "$PROJECTNAME" ]] ;
         then
         echo "Cannot find project name. Please pass a Project name as the first Parameter."
-        printMessage
-    elif [[ -z "$PROJECTNAME" ]] ;
+    elif [[ -z "$BUILD_ID" ]] ;
         then
-        echo "Cannot find project name. Please pass a Project name as the first Parameter."
+        echo "Cannot find project Bundle Identifier. Please pass a Project name as the first Parameter."
+    elif [[ -z "$BUILD_MODE" ]] ;
+        then
+        echo "Cannot find project Bundle Identifier. Please pass a Project name as the first Parameter."
     elif [[ -z "$SCHEMENAME" ]] ;
         then
         echo "Cannot find Xcode Schema name. Please pass a Schema name as the second Parameter."
         printMessage
     else
-        for var in PROJECTNAME SCHEMENAME ; do
+        for var in PROJECTNAME SCHEMENAME BUILD_ID BUILD_MODE ; do
             if [ -n "${!var}" ] ;
                 then
                 echo "$var is set to ${!var}"
@@ -85,11 +88,11 @@ function build {
 
     if [ "$CONTINUE" = "YES" ];
         then
-        generate_build $1 $2 $3 $4
-        printMessage "Bye Bye"
+        echo "Generating Builds"
+        generate_build $PROJECTNAME $SCHEMENAME $BUILD_ID $BUILD_MODE
     else
         printMessage "Bye Bye"
     fi
 }
 
-build $1 $2 $3 $4
+build $1 $2 $3 $4 $5

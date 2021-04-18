@@ -60,8 +60,9 @@ function archive {
     BUILD_MODE=$2
     POD_COMMAND=$3
     printMessage "Archieving Project..."
+    cd ..
     chmod 777 archive.sh
-    ./archive.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE $PROJECT_FOLDER
+    ./archive.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example
 }
 
 
