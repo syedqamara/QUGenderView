@@ -3,21 +3,21 @@ function clean {
     PROJECTNAME=$1
     SCHEMENAME=$2
     printMessage "Cleaning Project"
-    xcodebuild clean -workspace "$PROJECTNAME.xcworkspace" -configuration Release -scheme "$SCHEMENAME"
+    xcodebuild clean -workspace "$PROJECTNAME.xcworkspace" -configuration Release -scheme "$SCHEMENAME" | xcpretty
 }
 function archive {
     PROJECTNAME=$1
     SCHEMENAME=$2
     BUILD_FOLDER=$3
     printMessage "Archiving Project"
-    xcodebuild archive -workspace "$PROJECTNAME.xcworkspace" -scheme "$SCHEMENAME" -archivePath "$PROJECTNAME.xcarchive"
+    xcodebuild archive -workspace "$PROJECTNAME.xcworkspace" -scheme "$SCHEMENAME" -archivePath "$PROJECTNAME.xcarchive" | xcpretty
 }
 function export_ipa {
     PROJECTNAME=$1
     BUILD_FOLDER=$2
     printMessage "Exporting IPA"
     printMessage $BUILD_FOLDER
-    xcodebuild -exportArchive -archivePath "$PROJECTNAME.xcarchive" -exportPath "$BUILD_FOLDER/$PROJECTNAME" -exportOptionsPlist  "$BUILD_FOLDER/ExportOptions.plist"
+    xcodebuild -exportArchive -archivePath "$PROJECTNAME.xcarchive" -exportPath "$BUILD_FOLDER/$PROJECTNAME" -exportOptionsPlist  "$BUILD_FOLDER/ExportOptions.plist" | xcpretty
 }
 function remove_archive {
     PROJECTNAME=$1
@@ -36,7 +36,6 @@ function generate_build {
 }
 
 function printMessage {
-    clear
     printf '\n'
     echo "$(tput setaf 6)************************************  $1  ***********************************$(tput sgr0)"
     printf '\n'
