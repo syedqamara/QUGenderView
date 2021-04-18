@@ -30,7 +30,7 @@ function pod_reset {
 function pod_install {
     printMessage "Installing Cocoapods...\n"
     if pod install --verbose; then
-        
+        echo "Pod installed"
     else
         byeMessage "Failed to install Pods"
         exit
@@ -39,7 +39,7 @@ function pod_install {
 function pod_update {
     printMessage "Updating Cocoapods...\n"
     if pod update --verbose; then
-        
+        echo "Pod updated"
     else
         byeMessage "Failed to Update Pods"
         exit
@@ -48,7 +48,7 @@ function pod_update {
 function pod_repo_update {
     printMessage "Updating Cocoapods Repo...\n"
     if pod repo update --verbose; then
-        
+        echo "Pod updated"
         pod_update
     else
         byeMessage "Failed to Update Pods"
