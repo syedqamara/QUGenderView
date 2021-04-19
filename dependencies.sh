@@ -70,7 +70,7 @@ function archive {
     ./archive.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
     chmod 777 aws_build.sh
     ./aws_build.sh $BUILD_ID $BUILD_TEMP_FOLDER DemoBuild $TOKEN
-    rm -Rf "${PUBLIC_FOLDER}/Scripts/${BUILD_ID}"
+#    rm -Rf "${PUBLIC_FOLDER}/Scripts/${BUILD_ID}"
 }
 
 
