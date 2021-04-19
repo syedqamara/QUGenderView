@@ -36,9 +36,6 @@ rm -Rf Payload
 
 aws_upload $IPA_NAME $BUCKET_NAME $PREFIX
 
-ls -la
-cd ..
-rm -Rf $BUILD_ID
 
 AWS_IPA_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
 
@@ -55,7 +52,7 @@ api_call $MANIFEST_API_URL $TOKEN $MANIFEST_JSON $MANIFEST_FILE_NAME
 echo "Uploading Manifest Plist"
 #################################
 aws_upload $MANIFEST_FILE_NAME $BUCKET_NAME $PREFIX
-AWS_MANIFEST_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
+AWS_MANIFEST_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${MANIFEST_FILE_NAME}"
 
 #################################
 echo "Updating Build Link"
@@ -68,3 +65,5 @@ rm -RF $MANIFEST_FILE_NAME
 rm -RF "temp.txt"
 
 
+cd ..
+rm -Rf $BUILD_ID
