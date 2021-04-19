@@ -43,8 +43,8 @@ AWS_IPA_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NA
 echo "Generating Manifest Plist"
 #################################
 MANIFEST_API_URL="${BASE_URL}/api/build_manifest"
-MANIFEST_JSON_TEMPLATE='{"url":"%s","version":"%s","id":"%s","title":"%s"}'
-MANIFEST_JSON=$(printf "$MANIFEST_JSON_TEMPLATE" "$IPA_URL" "$VERSION_NUM" "$BUILD_ID" "$TITLE")
+MANIFEST_JSON_TEMPLATE='{"url":"%s","version":"%s","id":"%s","title":"%s","bundle":"%s"}'
+MANIFEST_JSON=$(printf "$MANIFEST_JSON_TEMPLATE" "$AWS_IPA_URL" "$VERSION_NUM" "$BUILD_ID" "$TITLE" "$BUNDLE_ID")
 api_call $MANIFEST_API_URL $TOKEN $MANIFEST_JSON $MANIFEST_FILE_NAME
 
 
