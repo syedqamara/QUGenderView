@@ -11,7 +11,7 @@ REGION="ap-southeast-1"
 PREFIX="builds/app/"
 TITLE="DemoBuild"
 IPA_NAME="$IPA_NAME.ipa"
-
+ls -la
 cd $BUILD_TEMP_FOLDER
 cd $BUILD_ID
 unzip $IPA_NAME
