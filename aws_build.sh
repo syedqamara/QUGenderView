@@ -61,8 +61,6 @@ MANIFEST_API_URL="${BASE_URL}/api/builds/update"
 BUILD_UPDATE_JSON_TEMPLATE='{"build_link":"%s","build_status":"success","id":"%s"}'
 BUILD_UPDATE_JSON=$(printf "$BUILD_UPDATE_JSON_TEMPLATE" "$AWS_MANIFEST_URL" "$BUILD_ID")
 api_call $MANIFEST_API_URL $TOKEN $BUILD_UPDATE_JSON "temp.txt"
-rm -RF $MANIFEST_FILE_NAME
-rm -RF "temp.txt"
 
 
 cd ..
