@@ -25,7 +25,7 @@ cd ..
 rm -Rf $BUILD_ID
 $FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
 
-$RESPONSE=CURL --request POST \
+$RESPONSE=$CURL --request POST \
   --url $BASE_URL/api/build_manifest \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
