@@ -24,6 +24,6 @@ ls -la
 cd ..
 rm -Rf $BUILD_ID
 FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
-
-$RESPONSE=$(curl --request POST \ --url $BASE_URL/api/build_manifest \ --header "Authorization: Bearer ${TOKEN}" \ --header "Content-Type: application/json" \ --header "Postman-Token: 11f4f673-479f-47b9-a28e-acc5f6ec03b1" \ --header "cache-control: no-cache" \ --data "{    \"url\": \"${FINAL_URL}\",\n    \"version\": \"${BUNDLE_ID}\",\n    \"id\": \"${BUILD_ID}\",\n    \"title\": \"${TITLE}\"}")
+MANIFEST_API_URL="${BASE_URL}/api/build_manifest"
+$RESPONSE=$(curl --request POST \ --url "$MANIFEST_API_URL" \ --header "Authorization: Bearer ${TOKEN}" \ --header "Content-Type: application/json" \ --header "Postman-Token: 11f4f673-479f-47b9-a28e-acc5f6ec03b1" \ --header "cache-control: no-cache" \ --data "{    \"url\": \"${FINAL_URL}\",\n    \"version\": \"${BUNDLE_ID}\",\n    \"id\": \"${BUILD_ID}\",\n    \"title\": \"${TITLE}\"}")
 echo "Api Response Returned\n ${RESPONSE}"
