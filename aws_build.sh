@@ -22,7 +22,7 @@ rm -Rf Payload
 #aws s3 cp $IPA_NAME "s3://${BUCKET_NAME}/${PREFIX}${IPA_NAME}" --acl public-read-write
 ls -la
 cd ..
-rm -Rf $BUILD_ID
+#rm -Rf $BUILD_ID
 FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
 MANIFEST_API_URL="${BASE_URL}/api/build_manifest"
 
