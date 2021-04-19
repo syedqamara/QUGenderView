@@ -70,7 +70,7 @@ function archive {
     cd ..
     rm -Rf $BUILD_ID
     chmod 777 aws_build.sh
-    ./aws_build.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
+    ./aws_build.sh $BUILD_ID $BUILD_TEMP_FOLDER DemoBuild $TOKEN
     
 }
 

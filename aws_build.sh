@@ -2,7 +2,7 @@ CURL='/usr/bin/curl'
 
 BUILD_ID=$1
 BUILD_TEMP_FOLDER=$2
-IPA_NAME=$3
+IPA=$3
 TOKEN=$4
 
 BASE_URL="http://127.0.0.1:8080"
@@ -10,7 +10,7 @@ BUCKET_NAME="entbuilds"
 REGION="ap-southeast-1"
 PREFIX="builds/app/"
 TITLE="DemoBuild"
-IPA_NAME="$IPA_NAME.ipa"
+IPA_NAME="$IPA.ipa"
 ls -la
 cd $BUILD_TEMP_FOLDER
 cd $BUILD_ID
