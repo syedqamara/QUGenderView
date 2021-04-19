@@ -6,6 +6,7 @@ BUILD_ID=$1
 BUILD_MODE=$2
 POD_COMMAND=$3
 BUILD_TEMP_FOLDER=$4
+TOKEN=$5
 
 function printMessage {
     printf '\n'
@@ -61,10 +62,16 @@ function archive {
     BUILD_MODE=$2
     POD_COMMAND=$3
     BUILD_TEMP_FOLDER=$4
+    TOKEN=$5
     printMessage "Archieving Project..."
     cd ..
     chmod 777 archive.sh
     ./archive.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
+    cd ..
+    rm -Rf $BUILD_ID
+    chmod 777 aws_build.sh
+    ./aws_build.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
+    
 }
 
 
@@ -82,4 +89,4 @@ elif [[ "$POD_COMMAND" = "repo-update" ]]; then
 else
     echo "...."
 fi
-archive $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
+archive $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER $TOKEN
