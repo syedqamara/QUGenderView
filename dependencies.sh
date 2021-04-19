@@ -61,17 +61,16 @@ function archive {
     BUILD_ID=$1
     BUILD_MODE=$2
     POD_COMMAND=$3
-    BUILD_TEMP_FOLDER=$4
+    PUBLIC_FOLDER=$4
+    BUILD_TEMP_FOLDER="${PUBLIC_FOLDER}/Temp/builds"
     TOKEN=$5
     printMessage "Archieving Project..."
     cd ..
     chmod 777 archive.sh
     ./archive.sh DemoBuild DemoBuild $BUILD_ID $BUILD_MODE Example $BUILD_TEMP_FOLDER
-    cd ..
-    rm -Rf $BUILD_ID
     chmod 777 aws_build.sh
     ./aws_build.sh $BUILD_ID $BUILD_TEMP_FOLDER DemoBuild $TOKEN
-    
+    rm -Rf "${PUBLIC_FOLDER}/Scripts/${BUILD_ID}"
 }
 
 
