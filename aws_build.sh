@@ -11,7 +11,6 @@ REGION="ap-southeast-1"
 PREFIX="builds/app/"
 TITLE="DemoBuild"
 IPA_NAME="$IPA.ipa"
-ls -la
 cd $BUILD_TEMP_FOLDER
 cd $BUILD_ID
 unzip $IPA_NAME
@@ -21,15 +20,16 @@ BUILD_NUM=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "Payload/DemoBui
 rm -Rf Payload
 
 #aws s3 cp $IPA_NAME "s3://${BUCKET_NAME}/${PREFIX}${IPA_NAME}" --acl public-read-write
-cd ..
-rm -Rf $BUILD_ID
-$FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
-
-$RESPONSE=curl --request POST \
-  --url $BASE_URL/api/build_manifest \
-  --header "Authorization: Bearer ${TOKEN}" \
-  --header "Content-Type: application/json" \
-  --header "Postman-Token: 11f4f673-479f-47b9-a28e-acc5f6ec03b1" \
-  --header "cache-control: no-cache" \
-  --data "{    \"url\": \"${FINAL_URL}\",\n    \"version\": \"${BUNDLE_ID}\",\n    \"id\": \"${BUILD_ID}\",\n    \"title\": \"${TITLE}\"}"
-echo "Api Response Returned\n ${RESPONSE}"
+ls -la
+#cd ..
+#rm -Rf $BUILD_ID
+#$FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
+#
+#$RESPONSE=curl --request POST \
+#  --url $BASE_URL/api/build_manifest \
+#  --header "Authorization: Bearer ${TOKEN}" \
+#  --header "Content-Type: application/json" \
+#  --header "Postman-Token: 11f4f673-479f-47b9-a28e-acc5f6ec03b1" \
+#  --header "cache-control: no-cache" \
+#  --data "{    \"url\": \"${FINAL_URL}\",\n    \"version\": \"${BUNDLE_ID}\",\n    \"id\": \"${BUILD_ID}\",\n    \"title\": \"${TITLE}\"}"
+#echo "Api Response Returned\n ${RESPONSE}"
