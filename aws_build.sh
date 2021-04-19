@@ -21,8 +21,8 @@ rm -Rf Payload
 
 #aws s3 cp $IPA_NAME "s3://${BUCKET_NAME}/${PREFIX}${IPA_NAME}" --acl public-read-write
 ls -la
-#cd ..
-#rm -Rf $BUILD_ID
+cd ..
+rm -Rf $BUILD_ID
 #$FINAL_URL="https://${BUCKET_NAME}.s3-${REGION}.amazonaws.com/${PREFIX}${IPA_NAME}"
 #
 #$RESPONSE=curl --request POST \
